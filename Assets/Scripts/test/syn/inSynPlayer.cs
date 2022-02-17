@@ -17,17 +17,15 @@ public class inSynPlayer : MonoBehaviour
 
     }
 
-    // Update is called once per frame
+    // Update is called once per frame   
     void Update()
-    {
-        //this.transform.rotation = Quaternion.Euler(0, 0, 0);      
+    {    
         Vector2 force=Vector2.zero;
         if(Input.GetKey(KeyCode.LeftArrow))force=new Vector2(speed*-1,0);
         if(Input.GetKey(KeyCode.RightArrow))force=new Vector2(speed,0);
         if(Input.GetKey(KeyCode.Space)&&this.jumpCount<2){
             force=new Vector2(0,jumpForce);
             jumpCount++;
-            //Debug.Log(jumpCount);
         }
         _Rigidbody2D.AddForce(force);        
     }

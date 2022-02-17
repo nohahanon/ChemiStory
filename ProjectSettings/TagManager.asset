@@ -9,6 +9,22 @@ TagManager:
   - H
   - C
   - Na
+  - H2O
+  - H2SO4
+  - NaOH
+  - CH3COOH
+  - S
+  - CO2
+  - CO
+  - H2
+  - O2
+  - O3
+  - SO3
+  - CH3
+  - C2H4
+  - C60
+  - H2S
+  - gomi
   layers:
   - Default
   - TransparentFX

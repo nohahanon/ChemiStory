@@ -18,7 +18,7 @@ public class inSynGM : MonoBehaviour
         
     }
     public void OnClick(){
-        if(scene.Equals("test_synthesis"))SceneManager.LoadScene("Scenes/test_synsyn");
-        else if(scene.Equals("test_synsyn"))SceneManager.LoadScene("Scenes/test_synthesis");
+        if(scene.Equals("test_synthesis"))SceneManager.LoadScene("Scenes/test/test_synsyn");
+        else if(scene.Equals("test_synsyn"))SceneManager.LoadScene("Scenes/test/test_synthesis");
     }
 }

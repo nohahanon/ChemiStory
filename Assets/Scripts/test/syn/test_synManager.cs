@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 using System.Linq;
+using UnityEngine.SceneManagement;
+
 
 public class test_synManager : MonoBehaviour//構造体はそもそもの分子量とどういう原子の組み合わせで成り立っているのかを管理する配列で成り立たせよう
 {
@@ -30,28 +32,27 @@ public class test_synManager : MonoBehaviour//構造体はそもそもの分子�
                                         };
     private string[] elements=new string[N]{"H","O","C","Na","S","H2O","CH3COOH","NaOH","H2SO4","CO2","CO","H2","O2","O3","SO3","CH3","C2H4","C60","H2S","gomi"};
     private const int N=20;
-    private int[] order=new int[20];
-    GameObject database;    
+    public int[] order=new int[N];
+    GameObject database;
     private int wordnum=0;
     public GameObject UI_material;
+
     // Start is called before the first frame update
     void Start()
     {
         UI_material=GameObject.Find("material");
         database=GameObject.Find("database");
         init();
-        order[0]=2;//
-        order[1]=1;//
     }   
 
     // Update is called once per frame
     void Update()
     {
-        //if(wordnum==0)UI_material.GetComponent<Text>().text="if select [H H O] and push synthesis, you get a H2O";
     }
     public void UIchanger(string tag){
         wordnum++;
         makeArray(tag);
+        //show();
         if(wordnum%15==0)UI_material.GetComponent<Text>().text+="\n";
         else if(wordnum<120)UI_material.GetComponent<Text>().text+=tag;
         else UI_material.GetComponent<Text>().text+="";
@@ -62,6 +63,7 @@ public class test_synManager : MonoBehaviour//構造体はそもそもの分子�
         database.GetComponent<inSynElData>().add(whats);
         //orderの分を減らす
         for(int i=0;i<N;i++){
+            //Debug.Log(i);
             while(true){
                 if(order[i]==0)break;
                 else{
@@ -70,7 +72,8 @@ public class test_synManager : MonoBehaviour//構造体はそもそもの分子�
                 }
             }
         }
-       init();
+       UI_material.GetComponent<Text>().text="";
+       wordnum=0;
     }
     private string spec(){
         int i,j,count;
@@ -78,9 +81,8 @@ public class test_synManager : MonoBehaviour//構造体はそもそもの分子�
             count=0;
             for(j=0;j<N;j++){
                 if(order[j]==specer[i,j])count++;
-                //if(i==0)Debug.Log("aaa"+order[j]);
             }
-            if(count==N)break;
+            if(count==N){Debug.Log(i);break;}
         }
         if(i==0)return "H";
         else if(i==1)return "O";
@@ -124,7 +126,6 @@ public class test_synManager : MonoBehaviour//構造体はそもそもの分子�
         else if(tag.Equals("C60"))order[17]++;
         else if(tag.Equals("H2S"))order[18]++;
         else order[19]++;
-        //Debug.Log(tag);
     }
     private void init(){
         for(int i=0;i<N;i++)order[i]=0;
