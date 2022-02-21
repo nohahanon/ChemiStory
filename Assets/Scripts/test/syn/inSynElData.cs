@@ -31,6 +31,10 @@ public class inSynElData : MonoBehaviour
     void Start()
     {
         for(int i=0;i<N;i++)order[i]=0;
+        order[3]=1;//
+        order[1]=1;//
+        order[0]=1;//
+        order[7]=1;//
     }
 
     // Update is called once per frame
